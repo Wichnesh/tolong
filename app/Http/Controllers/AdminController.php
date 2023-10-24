@@ -15,19 +15,19 @@ class AdminController extends Controller
 {
   public function workersList()
   {
-    $employees = Employee::with('employer')->join('sectors', 'employees.sector_id', '=', 'sectors.id')->where('employees.user_id', Auth::id())->where('employees.status',1)->select('employees.*', 'sectors.sector_name')->get();
+    $employees = Employee::with('employer')->join('sectors', 'employees.sector_id', '=', 'sectors.id')->where('employees.user_id', Auth::id())->where('employees.status', 1)->select('employees.*', 'sectors.sector_name')->get();
     return view('skins.inc.workersList', compact('employees'));
   }
 
   public function employerList()
   {
-    $employers = Employer::where('user_id', Auth::id())->where('status',1)->get();
+    $employers = Employer::where('user_id', Auth::id())->where('status', 1)->get();
     return view('skins.inc.employersList', compact('employers'));
   }
 
   public function sectorList()
   {
-    $sectors = Sector::where('user_id', Auth::id())->where('status',1)->get();
+    $sectors = Sector::where('user_id', Auth::id())->where('status', 1)->get();
     return view('skins.inc.sectorsList', compact('sectors'));
   }
 
@@ -79,25 +79,44 @@ class AdminController extends Controller
     return response()->json($data);
   }
 
-  public function renewalList(){
-    $employer_renewals = employerRenewal::leftJoin('employers', 'employer_renewals.employer_id','=', 'employers.id')->where('employer_renewals.user_id',Auth::id())->where('employer_renewals.status', '=',1)->get();
+  public function renewalList()
+  {
+    $employer_renewals = employerRenewal::leftJoin('employers', 'employer_renewals.employer_id', '=', 'employers.id')->where('employer_renewals.user_id', Auth::id())->where('employer_renewals.status', '=', 1)->get();
 
     $employee_renewals = EmployeeRenewal::leftJoin('employees', 'employee_renewals.employee_id', '=', 'employees.id')
-    ->where('employee_renewals.user_id', Auth::id())->where('employee_renewals.status','=',1)
-    ->get();
+      ->where('employee_renewals.user_id', Auth::id())->where('employee_renewals.status', '=', 1)
+      ->get();
 
-    return view('skins.inc.renewal.renewalList',compact('employer_renewals', 'employee_renewals'));
+    return view('skins.inc.renewal.renewalList', compact('employer_renewals', 'employee_renewals'));
   }
 
-  public function employerExpiryList($dateRange){
-    $a= list($start, $end) = explode('-', $dateRange);
-    $employers = Employer::where(function ($query) use ($start, $end) {
+  public function employerExpiryList($dateRange)
+  {
+    $a = list($start, $end) = explode('-', $dateRange);
+    $employers = Employer::where('user_id', Auth::id())->where(function ($query) use ($start, $end) {
       $startDate = Carbon::now()->addDays($start)->toDateString();
       $endDate = Carbon::now()->addDays($end)->toDateString();
-      
+
       $query->where('passport_expire', '>=', $startDate)
-      ->where('passport_expire', '<', $endDate);
-    })->get();
-      return view('skins.inc.employer_expiry_details',compact('employers'));
+        ->where('passport_expire', '<', $endDate);
+    })->where('user_id', Auth::id())
+      ->get();
+    return view('skins.inc.employer_expiry_details', compact('employers'));
+  }
+
+  public function employeeExpiryList($dateRange)
+  {
+    $a = list($start, $end) = explode('-', $dateRange);
+    $employees = Employee::where('user_id', Auth::id())
+      ->where(function ($query) use ($start, $end) {
+        $startDate = Carbon::now()->addDays($start)->toDateString();
+        $endDate = Carbon::now()->addDays($end)->toDateString();
+
+        $query->where('passport_ex_date', '>=', $startDate)
+          ->where('passport_ex_date', '<', $endDate);
+      })
+      ->get();
+      
+    return view('skins.inc.employee_expiry_details', compact('employees'));
   }
 }

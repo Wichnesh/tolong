@@ -20,7 +20,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Employer List</h4>
+                        <h4 class="card-title">Employee List</h4>
                         <div class="table-responsive">
                             <table class="table table-striped" id="myTable" width="100%" cellspacing="0">
                                 <thead>
@@ -30,7 +30,7 @@
                                             Employer Name
                                         </th>
                                         <th>
-                                            Employer Phone Number
+                                            Passport Number
                                         </th>
                                         <th>
                                             Passport Issue Date
@@ -39,23 +39,31 @@
                                             Passport Expire Date
                                         </th>
                                         <th>
-                                            Employer License Number
+                                            Work Pass Year
                                         </th>
                                         <th>
-                                            Perkeso Employer's Code
+                                            Sticker Number
+                                        </th>
+                                        <th>
+                                            Work Pass Issue
+                                        </th>
+                                        <th>
+                                            Work Pass Expire
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($employers as $employer)
+                                    @foreach ($employees as $employee)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $employer->emp_name }}</td>
-                                            <td>{{ $employer->emp_phone }}</td>
-                                            <td>{{ $employer->passport_issue }}</td>
-                                            <td>{{ $employer->passport_expire }}</td>
-                                            <td>{{ $employer->emp_lic }}</td>
-                                            <td>{{ $employer->emp_per_code }}</td>
+                                            <td>{{ $employee->emp_fname }}</td>
+                                            <td>{{ $employee->passport_number }}</td>
+                                            <td>{{ $employee->passport_is_date }}</td>
+                                            <td>{{ $employee->passport_ex_date }}</td>
+                                            <td>{{ $employee->workpass_yr }}</td>
+                                            <td>{{ $employee->sticker_number }}</td>
+                                            <td>{{ $employee->workpass_is_date }}</td>
+                                            <td>{{ $employee->workpass_ex_date }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

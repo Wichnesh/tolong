@@ -69,4 +69,5 @@ Route::middleware(['authCheck'])->group(function () {
     Route::post('employee-renewalEdit', [UploadsController::class, 'editRenewalEmployee'])->name('edit.renewal.employee');
     Route::get('employee-renewal-delete/{id}',[UploadsController::class, 'employeeRenewalDelete'])->name('employee.renewal.delete');
     Route::get('employer-expiry-details/{dateRange}',[AdminController::class,'employerExpiryList'])->name('expiry.employer');
+    Route::get('employee-expiry-details/{dateRange}', [AdminController::class, 'employeeExpiryList'])->name('expiry.employee');
 });

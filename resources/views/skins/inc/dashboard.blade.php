@@ -87,25 +87,59 @@
                                     <tr>
                                         <td>Employer</td>
                                         <td>
-                                            <a href="{{ route('expiry.employer', '0-30') }}">{{ $employer_expire_counts['0-30'] }}</a>
+                                            <a
+                                                href="{{ route('expiry.employer', '0-30') }}">{{ $employer_expire_counts['0-30'] }}</a>
                                         </td>
 
-                                        <td>{{ $employer_expire_counts['30-60'] }}</td>
-                                        <td>{{ $employer_expire_counts['60-90'] }}</td>
-                                        <td>{{ $employer_expire_counts['90-120'] }}</td>
-                                        <td>{{ $employer_expire_counts['120-150'] }}</td>
-                                        <td>{{ $employer_expire_counts['150-180'] }}</td>
+                                        <td>
+                                            <a href="{{ route('expiry.employer', '30-60') }}">
+                                                {{ $employer_expire_counts['30-60'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employer', '60-90') }}">{{ $employer_expire_counts['60-90'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employer', '90-120') }}">{{ $employer_expire_counts['90-120'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employer', '120-150') }}">{{ $employer_expire_counts['120-150'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('expiry.employer', '150-180') }}">
+                                                {{ $employer_expire_counts['150-180'] }} </a>
+                                        </td>
                                     </tr>
                                 @endif
                                 @if (!empty($employee_expire_counts))
                                     <tr>
                                         <td>Employee</td>
-                                        <td>{{ $employee_expire_counts['0-30'] }}</td>
-                                        <td>{{ $employee_expire_counts['30-60'] }}</td>
-                                        <td>{{ $employee_expire_counts['60-90'] }}</td>
-                                        <td>{{ $employee_expire_counts['90-120'] }}</td>
-                                        <td>{{ $employee_expire_counts['120-150'] }}</td>
-                                        <td>{{ $employee_expire_counts['150-180'] }}</td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employee', '0-30') }}">{{ $employee_expire_counts['0-30'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employee', '30-60') }}">{{ $employee_expire_counts['30-60'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employee', '60-90') }}">{{ $employee_expire_counts['60-90'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employee', '90-120') }}">{{ $employee_expire_counts['90-120'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employee', '120-150') }}">{{ $employee_expire_counts['120-150'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('expiry.employee', '150-180') }}">{{ $employee_expire_counts['150-180'] }}</a>
+                                        </td>
                                     </tr>
                                 @endif
                             </tbody>

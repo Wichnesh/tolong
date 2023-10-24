@@ -78,9 +78,9 @@
                            <li class="nav-item">
                                <a class="nav-link" href="{{ route('renewal.list') }}">Renewal List</a>
                            </li>
-                           <li class="nav-item">
-                               {{-- <a class="nav-link" href="{{ route('employee.renewal') }}">Employee</a> --}}
-                           </li>
+                           {{-- <li class="nav-item">
+                               <a class="nav-link" href="{{ route('employee.renewal') }}">Employee</a>
+                           </li> --}}
                            {{-- <li class="nav-item">
                                <a class="nav-link" href="">Item 3</a>
                            </li> --}}

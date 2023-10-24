@@ -38,7 +38,7 @@ class DashboardController extends Controller
             $endDays = $range[1];
             $startDate = $today->copy()->addDays($startDays)->format('Y-m-d');
             $endDate = $today->copy()->addDays($endDays)->format('Y-m-d');
-            $count = Employer::where('passport_expire', '>=', $startDate)
+            $count = Employer::where('user_id',Auth::id())->where('passport_expire', '>=', $startDate)
                 ->where('passport_expire', '<', $endDate)
                 ->count();
 
@@ -62,7 +62,7 @@ class DashboardController extends Controller
             $endDays = $range[1];
             $startDate = $today->copy()->addDays($startDays)->format('Y-m-d');
             $endDate = $today->copy()->addDays($endDays)->format('Y-m-d');
-            $count = Employee::where('passport_ex_date', '>=', $startDate)
+            $count = Employee::where('user_id',Auth::id())->where('passport_ex_date', '>=', $startDate)
                 ->where('passport_ex_date', '<', $endDate)
                 ->count();
 
